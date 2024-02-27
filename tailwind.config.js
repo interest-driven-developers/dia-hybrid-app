@@ -6,7 +6,14 @@ module.exports = {
   ],
   darkMode: 'media',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#591FD9',
+      },
+      fontFamily: {
+        Pretendard: ['Pretendard'],
+      },
+    },
   },
   plugins: [],
 };

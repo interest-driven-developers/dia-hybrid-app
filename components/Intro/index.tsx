@@ -1,12 +1,14 @@
 import Link from "next/link";
 import ServiceIntro from "./components/ServiceIntro";
 import Tag from "../Tag";
+import Logo from "@/ui/Logo";
 export default function Intro() {
   return (
     <>
       <section className="flex flex-col items-center justify-center py-24 w-screen bg-gray-100 dark:bg-gray-900  ">
         <h1 className="text-2xl text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none dark:text-white ">
           DIA는{' '}
+          
           <span className="custom-color">
             <ServiceIntro></ServiceIntro>
           </span>

@@ -20,7 +20,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addListener(async status => {
 const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <IonApp>
-      <IonReactRouter>
+      <IonReactRouter >
         <IonRouterOutlet id="main">
           {children}
           <Route path="/tabs" render={() => <Tabs />} />

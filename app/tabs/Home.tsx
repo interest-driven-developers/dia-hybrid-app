@@ -28,13 +28,8 @@ const Home = () => {
 
   return (
     <Layout>
-      <IonContent className="ion-padding" fullscreen>
-        {/* <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Feed</IonTitle>
-          </IonToolbar>
-        </IonHeader> */}
-        <div className="mt-12 flex flex-col justify-center mx-auto items-center w-full gap-10">
+      <IonContent  fullscreen>
+        <div className="flex flex-col justify-center mx-auto items-center w-full">
           <Notifications
             open={showNotifications}
             onDidDismiss={() => setShowNotifications(false)}

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Store from '@/store';
 import * as selectors from '@/store/selectors';
 import {
@@ -13,6 +13,8 @@ import {
   IonLabel,
   IonList,
 } from '@ionic/react';
+import Layout from '@/components/Layout'
+import { getQuestionList } from '../api/getQuestionList';
 
 interface List {
   id: string;
@@ -46,24 +48,27 @@ const AllLists: React.FC<AllListsProps> = ({ onSelect }) => {
 };
 
 const Lists: React.FC = () => {
+  const [questionList, setQuestionList] = React.useState([]);
+  useEffect(() => {
+    async function fetchQuestionList() {
+      const questionList = await getQuestionList('backend');
+      console.log(questionList);
+    }
+    fetchQuestionList();
+  },[]);
   return (
-    <IonPage>
-      <IonHeader translucent={true}>
-        <IonToolbar>
-          <IonTitle>Lists</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen={true}>
-        <IonHeader collapse="condense">
+    <Layout>
+      <IonContent className="ion-padding" fullscreen>
+        {/* <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Lists</IonTitle>
           </IonToolbar>
-        </IonHeader>
-        <IonList>
+        </IonHeader> */}
+        {/* <IonList>
           <AllLists />
-        </IonList>
+        </IonList> */}
       </IonContent>
-    </IonPage>
+    </Layout>
   );
 };
 
