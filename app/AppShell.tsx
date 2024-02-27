@@ -1,11 +1,19 @@
 'use client';
 
-import { IonApp, IonRouterOutlet, setupIonicReact, IonHeader, IonToolbar, IonTitle} from '@ionic/react';
+import {
+  IonApp,
+  IonRouterOutlet,
+  setupIonicReact,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+} from '@ionic/react';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Tabs from './tabs';
 import Header from './header/Header';
+import AuthSession from './api/auth/AuthSession';
 
 setupIonicReact({});
 
@@ -19,15 +27,17 @@ window.matchMedia('(prefers-color-scheme: dark)').addListener(async status => {
 
 const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <IonApp>
-      <IonReactRouter >
-        <IonRouterOutlet id="main">
-          {children}
-          <Route path="/tabs" render={() => <Tabs />} />
-          <Route path="/" render={() => <Redirect to="/tabs/home" />} exact={true} />
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </IonApp>
+    // <AuthSession>
+      <IonApp>
+        <IonReactRouter>
+          <IonRouterOutlet id="main">
+            {children}
+            <Route path="/tabs" render={() => <Tabs />} />
+            <Route path="/" render={() => <Redirect to="/tabs/home" />} exact={true} />
+          </IonRouterOutlet>
+        </IonReactRouter>
+      </IonApp>
+    // </AuthSession>
   );
 };
 

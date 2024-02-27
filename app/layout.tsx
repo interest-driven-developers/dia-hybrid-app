@@ -21,6 +21,7 @@ import '../styles/variables.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import dynamic from 'next/dynamic';
+import AuthSession from './api/auth/AuthSession';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,7 +36,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       {/* <body className={inter.className}> */}
       <body className="font-Pretendard">
-        <App>{children}</App>
+        <App>
+          <AuthSession>{children}</AuthSession>
+        </App>
       </body>
       <Script
         type="module"

@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
-import pgAdapter from "../../../../../lib/adapter/pgAdapter";
+import pgAdapter from "@/lib/adapter/pgAdapter";
 import { Pool } from "pg";
 
 const pool = new Pool({
