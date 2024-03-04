@@ -1,33 +1,36 @@
-import Link from "next/link";
-import ServiceIntro from "./components/ServiceIntro";
-import Tag from "../Tag";
-import Logo from "@/ui/Logo";
+import Link from 'next/link';
+import ServiceIntro from './components/ServiceIntro';
+import Tag from '../Tag';
+import Logo from '@/ui/Logo';
+import { useHistory } from 'react-router';
 export default function Intro() {
+  const history = useHistory();
   return (
     <>
-      <section className="flex flex-col items-center justify-center py-24 w-screen bg-gray-100 dark:bg-gray-900  ">
-        <h1 className="text-2xl text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none dark:text-white ">
-          DIA는{' '}
-          
+      <section className="flex flex-col items-center justify-center py-24 w-screen bg-gray-100 ">
+        <h1 className="text-2xl text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none ">
+          DIA는
+          <br />
+        </h1>
+        <h1 className="text-2xl m-0 text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none ">
           <span className="custom-color">
             <ServiceIntro></ServiceIntro>
           </span>
           입니다
         </h1>
-        <p className="mx-auto max-w-[700px] text-gray-500 text-xs/relaxed sm:text-xl/relaxed dark:text-white">
+        <p className="mx-auto max-w-[700px] text-gray-500 text-xs/relaxed sm:text-xl/relaxed ">
           현재 베타 버전으로 모의 면접 기능만을 제공하고 있습니다.
         </p>
-        <Link
-          className="mt-8 px-4 py-3 text-white bg-indigo-500 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
-          href="/solve/"
+        <button
+          className="mt-8 px-4 py-3 text-white bg-primary-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+          onClick={() => history.push('/tabs/solve/backend')}
         >
           바로 시작하기
-        </Link>
+        </button>
       </section>
-
       <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
+        <div className="container px-4 ">
+          <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
             <img
               alt="Voice Recognition"
               className="mx-auto h-auto w-full aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"

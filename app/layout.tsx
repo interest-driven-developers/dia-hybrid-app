@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       {/* <body className={inter.className}> */}
-      <body className="font-Pretendard">
+      <body className="font-Pretendard" >
         <AuthSession>
           <App>{children}</App>
         </AuthSession>
