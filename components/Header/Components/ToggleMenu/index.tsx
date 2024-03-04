@@ -9,6 +9,7 @@ import {
   IonLabel,
   IonList,
   IonMenu,
+  IonButton,
 } from '@ionic/react';
 import Logo from '@/ui/Logo';
 import { menuController } from '@ionic/core';
@@ -17,8 +18,12 @@ type ToggleMenuProps = {
 };
 
 export default function ToggleMenu(props: ToggleMenuProps) {
+  const menuRef = React.useRef<HTMLIonMenuElement | null>(null);
+   const closeMenu = async () => {
+     menuRef.current?.close();
+   };
   return (
-    <IonMenu contentId="main-content" side="end" id="main-menu">
+    <IonMenu ref={menuRef} contentId="main-content" side="end" id="main-menu">
       <IonHeader>
         <IonToolbar className="flex items-center bg-white">
           <IonTitle className="flex items-center justify-center" slot="">
@@ -29,19 +34,13 @@ export default function ToggleMenu(props: ToggleMenuProps) {
       <IonContent className="ion-padding ">
         <ProfileToolbar />
         <IonList>
-          <IonItem routerLink={'/'} onClick={async () => await menuController.toggle('main-menu')}>
+          <IonItem routerLink={'/tabs'} onClick={() => closeMenu()}>
             <IonLabel>홈</IonLabel>
           </IonItem>
-          <IonItem
-            routerLink={'/tabs/solve/backend'}
-            onClick={async () => await menuController.toggle('main-menu')}
-          >
+          <IonItem routerLink={'/tabs/solve/backend'} onClick={() => closeMenu()}>
             <IonLabel>문제풀기</IonLabel>
           </IonItem>
-          <IonItem
-            routerLink={'/tabs/history'}
-            onClick={async () => await menuController.toggle('main-menu')}
-          >
+          <IonItem routerLink={'/tabs/history'} onClick={() => closeMenu()}>
             <IonLabel>히스토리</IonLabel>
           </IonItem>
         </IonList>

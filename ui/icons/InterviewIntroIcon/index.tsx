@@ -1,8 +1,9 @@
 type Props = {
   className?: string;
   onClick?: () => void;
+  ringColor?: string;
 };
-export default function InterviewIntroIcon({ className, onClick }: Props) {
+export default function InterviewIntroIcon({ className, onClick,ringColor }: Props) {
   return (
     <svg
       width="74"
@@ -11,8 +12,9 @@ export default function InterviewIntroIcon({ className, onClick }: Props) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      className={className}
     >
-      <circle cx="37" cy="37" r="37" fill="#E2D7FF" />
+      <circle cx="37" cy="37" r="37" fill={ringColor} />
       <circle cx="37" cy="37" r="30" fill="url(#pattern0)" />
       <defs>
         <pattern

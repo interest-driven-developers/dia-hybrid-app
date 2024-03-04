@@ -1,24 +1,38 @@
 import { NextResponse } from 'next/server';
-
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../../auth/authOptions';
+import { Session } from '@/types/Session';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const id = searchParams.get('query');
+  const pkValue = searchParams.get('pkValue');
+  const session = await getServerSession({ req: request, ...authOptions });
+  const typedSession = session as Session;
+  const headers = typedSession
+    ? {
+        'Content-Type': 'application/json',
+        authorization: typedSession.user.access_token,
+      }
+    : {
+        'Content-Type': 'application/json',
+      };
+
   const result = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions?categoryValues=${id}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions/${pkValue}`,
     {
       //   method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
+      headers: headers as HeadersInit,
+      next: {
+        revalidate: 0,
       },
     }
   );
   const data = await result.json();
-  console.log('res', data.data.pageData);
+  // console.log('res', data.data.pageData);
   //   return data
   //   return NextResponse.json({ data });
   try {
     if (data.status === 200) {
-      return NextResponse.json(data.data.pageData, { status: result.status });
+      return NextResponse.json(data.data, { status: result.status });
     }
     return NextResponse.json(
       {

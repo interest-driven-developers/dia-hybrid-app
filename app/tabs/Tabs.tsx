@@ -18,6 +18,7 @@ import Lists from './Lists';
 import Settings from './Settings';
 import SolveMain from './solve/SolveMain';
 import ProblemMain from './solve/problem/ProblemMain';
+import MockInterviewMain from './mockinterview/MockInterviewMain';
 import { usePathname } from 'next/navigation';
 
 // import HomeIcon from '@/ui/icons/HomeIcon';
@@ -29,7 +30,12 @@ const Tabs = () => {
       <IonRouterOutlet>
         <Route path="/tabs/home" render={() => <Home />} exact={true} />
         <Route path="/tabs/solve/:query" render={() => <SolveMain />} />
-        <Route path="/tabs/solve/problem/:pk" render={() => <ProblemMain />} exact={true} />
+        <Route path="/tabs/solve/problem/:pkValue" render={() => <ProblemMain />} exact={true} />
+        <Route
+          path="/tabs/solve/mockinterview/:pkValue"
+          render={() => <MockInterviewMain />}
+          exact={true}
+        />
         <Route path="/tabs/history" render={() => <Settings />} exact={true} />
         <Route path="/tabs" render={() => <Redirect to="/tabs/home" />} exact={true} />
       </IonRouterOutlet>

@@ -52,7 +52,7 @@ const Lists: React.FC = () => {
   useEffect(() => {
     async function fetchQuestionList() {
       const questionList = await getQuestionList('backend');
-      console.log(questionList);
+      // console.log(questionList);
     }
     fetchQuestionList();
   },[]);

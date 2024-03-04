@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     }
   );
   const data = await result.json();
-  console.log('res', data.data.pageData);
+  // console.log('res', data.data.pageData);
   //   return data
   //   return NextResponse.json({ data });
   try {

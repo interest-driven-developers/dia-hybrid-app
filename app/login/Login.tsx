@@ -25,7 +25,7 @@ export default function Login({ prevPath = process.env.NEXT_PUBLIC_CLIENT_URL }:
   useEffect(() => {
     (async () => {
       const res = await getProviders();
-      console.log(res)
+      // console.log(res)
       setProviders(res as any);
     })();
   }, []);
