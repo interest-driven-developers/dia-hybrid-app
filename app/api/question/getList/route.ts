@@ -1,21 +1,28 @@
 import { NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../../auth/authOptions';
+import { Session } from '@/types/Session';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('query');
-
+  const session = await getServerSession({ req: request, ...authOptions });
+  const typedSession = session as Session;
+  const headers = session
+    ? {
+        'Content-Type': 'application/json',
+        authorization: typedSession.user.access_token,
+      }
+    : {
+        'Content-Type': 'application/json',
+      };
   const result = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions?categoryValues=${id}`,
     {
       //   method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: headers as HeadersInit,
       next: {
         revalidate: 0,
-      }
+      },
     }
   );
   const data = await result.json();

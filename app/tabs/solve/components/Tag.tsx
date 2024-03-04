@@ -1,6 +1,7 @@
 'use Client';
 import mapTagToPurpose from '@/utils/mapTagToPurpose';
 import { IonItem } from '@ionic/react';
+import { useHistory } from 'react-router';
 type TagProps = {
   children?: React.ReactNode;
   selected: string;
@@ -9,50 +10,41 @@ type TagProps = {
 import { useMemo } from 'react';
 
 export default function Tag(props: TagProps) {
-  const selectedCategory = props.selected.toLowerCase();
-  const categoryValues = useMemo(() => {
-    switch (selectedCategory) {
+  const history = useHistory();
+    let categoryValues = '';
+    switch (props.selected.toLowerCase()) {
       case 'backend':
-        return '백엔드';
+        categoryValues = '백엔드';
+        break;
       case 'frontend':
-        return '프론트엔드';
+        categoryValues = '프론트엔드';
+        break;
       case 'ios':
-        return 'IOS';
+        categoryValues = 'IOS';
+        break;
       case 'aos':
-        return 'AOS';
+        categoryValues = 'AOS';
+        break;
       default:
-        return '';
+        categoryValues = '';
+        break;
     }
-  }, [selectedCategory]);
+    const tagStyle = (() => {
+      if (categoryValues === props.children) {
+        return 'bg-white text-primary-600 border border-[#7C4DFF] border-solid';
+      } else {
+        return 'bg-white text-[#E0E0E0] border border-[#E0E0E0] border-solid hover:border-[#7C4DFF] hover:text-primary-600';
+      }
+    })();
 
-  const tagStyle = useMemo(() => {
-    if (categoryValues === props.children) {
-      return 'bg-primary';
-    } else {
-      return 'bg-white border border-[#7C4DFF] border-solid hover:bg-primary ';
-    }
-  }, [categoryValues, props.children]);
-
-  const tagNameStyle = useMemo(() => {
-    if (categoryValues === props.children) {
-      return 'text-white';
-    } else {
-      return 'text-primary hover:text-white';
-    }
-  }, [categoryValues, props.children]);
-
-const handleTagClick = () => {
-  if (props.children === props.selected) return null;
-  props.setTag(props.children as string);
-};
   return (
     <div
-      className={`flex items-center rounded-[5px] h-[30px] py-[6px] px-[18px]  justify-center ${tagStyle}`}
-      onClick={handleTagClick}
+      className={`flex items-center rounded-[5px] py-2 px-5 h-[30px]    ${tagStyle}`}
+      onClick={() => history.push(`/tabs/solve/${mapTagToPurpose(props.children as string)}`)}
     >
-      <h1 className={`text-xs text-center font-semibold whitespace-nowrap mx-auto my-auto ${tagNameStyle}`}>
+      <p className="text-[12px] leading-[14.4px]  text-center font-semibold whitespace-nowrap">
         {props.children}
-      </h1>
+      </p>
     </div>
   );
 }

@@ -14,16 +14,16 @@ interface SolveHeaderProps {
 const SolveHeader: React.FC<SolveHeaderProps> = ({ currentTag,setCurrentTag }) => {
   const tags = getTags();
   return (
-    <div className="sticky top-0 z-10 px-4 py-3 flex flex-col items-center bg-white ">
+    <div className="sticky top-0 z-10 px-4 py-3 flex flex-col items-center bg-white">
       <div className="flex flex-row w-full mb-4 bg-white ">
-        <Link href={`/solve/${currentTag}`} className="flex-1">
+        <Link href={`/tabs/solve/${currentTag}`} className="flex-1">
           <CategoryButton selected={true}>개별연습</CategoryButton>
         </Link>
-        <Link href={`/practice/${currentTag}`} className="flex-1">
+        <Link href={`/tabs/practice/${currentTag}`} className="flex-1">
           <CategoryButton>실전연습</CategoryButton>
         </Link>
       </div>
-      <IonList className="flex flex-row gap-1.5 overflow-x-auto w-full bg-none mb-3 no-scrollbar backdrop-blur-sm">
+      <IonList className="flex flex-row gap-1.5 overflow-x-auto w-full bg-none no-scrollbar backdrop-blur-sm">
         {tags.map((tag, index) => (
           <Tag key={index} selected={currentTag} setTag={setCurrentTag}>
             {tag.name}
