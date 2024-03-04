@@ -1,21 +1,23 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import { getQuestionList } from '@/app/api/getQuestionList';
 import { IonList } from '@ionic/react';
 // import Question from '@/components/Question';
 import Question from './components/Question';
-import type { Question as QuestionType  } from '@/types/Question';
+import type { Question as QuestionType } from '@/types/Question';
+import axios from 'axios';
 
 interface SolveListProps {
-    query: string;
+  query: string;
 }
 
-const SolveList: React.FC<SolveListProps> = ({query}) => {
-  const [questionList, setQuestionList] = useState([]);
+const SolveList: React.FC<SolveListProps> = ({ query }) => {
+  const [questionList, setQuestionList] = useState<QuestionType[]>([]);
   useEffect(() => {
+    console.log('여기 안옴?');
     async function fetchQuestionList() {
-      const questionList = await getQuestionList(query);
-        setQuestionList(questionList);
-        console.log('query,list', query, questionList)
+      const questionList = await axios.get('/api/question/getList/?query=backend');
+      setQuestionList(questionList.data as QuestionType[]);
     }
     fetchQuestionList();
   }, [query]);

@@ -13,7 +13,6 @@ interface SolveHeaderProps {
 
 const SolveHeader: React.FC<SolveHeaderProps> = ({ currentTag,setCurrentTag }) => {
   const tags = getTags();
-  console.log(tags);
   return (
     <div className="sticky top-0 z-10 px-4 py-3 flex flex-col items-center bg-white ">
       <div className="flex flex-row w-full mb-4 bg-white ">

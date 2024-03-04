@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import type { HistoryType } from "@/types/History";
 import { twMerge } from "tailwind-merge";
 import Spinner from "../Spinner";
-import DeleteIcon from "@/app/ui/icons/DeleteIcon";
+import DeleteIcon from "@/ui/icons/DeleteIcon";
 import { deleteHistory } from "@/app/api/deleteHistory";
 import type { Session } from "@/types/Session";
 import formatDateString from "@/utils/\bformatDateString";

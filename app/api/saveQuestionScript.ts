@@ -1,5 +1,5 @@
 type Params = {
-  questionPkValue: number;
+  questionPkValue: string;
   contentValue: string;
   accessToken: string;
 };

@@ -20,7 +20,7 @@ import Store from '@/store';
 import { HomeItem } from '@/mock';
 import Layout from '@/components/Layout';
 import Intro from '@/components/Intro';
-
+import { useSession } from 'next-auth/react';
 
 const Home = () => {
   const homeItems = Store.useState(getHomeItems) as HomeItem[];

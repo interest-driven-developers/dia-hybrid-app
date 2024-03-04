@@ -1,13 +1,13 @@
 type Params = {
-  scriptPkValue: number;
+  scriptPkValue: string;
   contentValue: string;
   accessToken: string;
 };
 export const editQuestionScript = async (params: Params): Promise<void> => {
   const { scriptPkValue, contentValue, accessToken } = params;
-  const apiUrl = `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/scripts/${scriptPkValue}`;
+  // const apiUrl = `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/scripts/${scriptPkValue}`;
 
-  // const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts/${scriptPkValue}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts/${scriptPkValue}`;
 
   const requestOptions: RequestInit = {
     method: "PATCH",

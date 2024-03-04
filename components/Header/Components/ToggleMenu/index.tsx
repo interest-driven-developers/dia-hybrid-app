@@ -1,35 +1,51 @@
-import Link from "next/link";
-
+import React, { useState } from 'react';
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonMenu,
+} from '@ionic/react';
+import Logo from '@/ui/Logo';
+import { menuController } from '@ionic/core';
+import ProfileToolbar from './components/ProfileToolbar';
 type ToggleMenuProps = {
-  isToggleMenuOpen: boolean;
-  animationClass: string;
-  onClick: () => void;
 };
 
 export default function ToggleMenu(props: ToggleMenuProps) {
   return (
-    <div
-      className={`absolute right-1 w-2/3 h-96 z-50 bg-white shadow-lg rounded-md p-6 block md:hidden ${props.animationClass}`}
-    >
-      <span className="items-center mb-5 text-3xl font-bold custom-color cursor-pointer">
-        DIA
-      </span>
-      <nav className="grid gap-2">
-        <Link
-          className="flex w-full items-center py-2 text-lg font-semibold text-slate-600"
-          href="/"
-          onClick={props.onClick}
-        >
-          홈
-        </Link>
-        <Link
-          className="flex w-full items-center py-2 text-lg font-semibold text-slate-600"
-          href="/solve"
-          onClick={props.onClick}
-        >
-          모든 문제
-        </Link>
-      </nav>
-    </div>
+    <IonMenu contentId="main-content" side="end" id="main-menu">
+      <IonHeader>
+        <IonToolbar className="flex items-center bg-white">
+          <IonTitle className="flex items-center justify-center" slot="">
+            <Logo className="w-[52px] h-[20px] mx-auto" />
+          </IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent className="ion-padding ">
+        <ProfileToolbar />
+        <IonList>
+          <IonItem routerLink={'/'} onClick={async () => await menuController.toggle('main-menu')}>
+            <IonLabel>홈</IonLabel>
+          </IonItem>
+          <IonItem
+            routerLink={'/tabs/solve/backend'}
+            onClick={async () => await menuController.toggle('main-menu')}
+          >
+            <IonLabel>문제풀기</IonLabel>
+          </IonItem>
+          <IonItem
+            routerLink={'/tabs/history'}
+            onClick={async () => await menuController.toggle('main-menu')}
+          >
+            <IonLabel>히스토리</IonLabel>
+          </IonItem>
+        </IonList>
+      </IonContent>
+    </IonMenu>
   );
 }

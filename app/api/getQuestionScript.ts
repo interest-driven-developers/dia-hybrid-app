@@ -3,7 +3,7 @@ type Params = {
   accessToken: string | undefined;
 };
 export const getQuestionScript = async (
-  id: number,
+  id: string,
   accessToken: string
 ): Promise<any> => {
   if (!id) {
@@ -13,8 +13,8 @@ export const getQuestionScript = async (
     return null;
   }
 
-  const apiUrl = `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/scripts?questionPkValue=${id}`;
-  // const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts?questionPkValue=${id}`;
+  // const apiUrl = `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/scripts?questionPkValue=${id}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts?questionPkValue=${id}`;
   const requestOptions: RequestInit = {
     method: "GET",
     headers: {

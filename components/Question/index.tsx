@@ -31,31 +31,22 @@ export default function Question({ question, isBookmarkOn = true, session }: Que
     // router.refresh();
   };
   return (
-    <IonItem
-      routerLink={`/tabs/sovlve/${question.pkValue}`}
-      // className="list-entry"
-      className="flex relative flex-col bg-[#F9F5FF] rounded-[5px] px-1 py-[18px]"
-      color='none'
-      lines='none'
-    >
-        {/* <IonLabel>{question.korTitleValue}</IonLabel> */}
-        {isBookmarkOn && (
-          <div className="absolute top-[1px] right-[4px] cursor-pointer group">
-            {question.bookmark ? (
-              <BookMarkFillIcon onClick={() => handleDeleteBookmark()}></BookMarkFillIcon>
-            ) : (
-              <BookMarkIcon onClick={() => handleAddBookmark()}></BookMarkIcon>
-            )}
-          </div>
-        )}
-        <div>
-          <h1 className="text-[#C1ABF1] text-[12px] sm:text-lg font-semibold leading-3">
-            Question
-          </h1>
-          <h2 className="text-[#212121] text-[16px] mt-0.5 sm:text-2xl font-bold leading-[19.2px]">
-            {question.korTitleValue}
-          </h2>
+    <div className="flex relative w-full flex-col bg-[#F9F5FF] rounded-[5px] px-4 py-[18px]">
+      {isBookmarkOn && (
+        <div className="absolute top-[9px] right-[9px] cursor-pointer group">
+          {question.bookmark ? (
+            <BookMarkFillIcon onClick={() => handleDeleteBookmark()}></BookMarkFillIcon>
+          ) : (
+            <BookMarkIcon onClick={() => handleAddBookmark()}></BookMarkIcon>
+          )}
         </div>
-    </IonItem>
+      )}
+      <div className='flex flex-col gap-y-[2px] '>
+        <p className="text-[#C1ABF1] text-[12px] sm:text-lg font-semibold leading-3">Question</p>
+        <p className="text-[#212121] text-[16px] mt-0.5 sm:text-2xl font-bold leading-[19.2px]">
+          {question.korTitleValue}
+        </p>
+      </div>
+    </div>
   );
 }

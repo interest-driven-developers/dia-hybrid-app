@@ -1,9 +1,10 @@
 type Params = {
-  id: number;
+  id: string;
   accessToken?: string;
 };
 export const getQuestionDetails = async (params: Params) => {
   const { id, accessToken } = params;
+  console.log('id', id, 'accessToken', accessToken)
   const headers = accessToken
     ? {
         "Content-Type": "application/json",
@@ -14,8 +15,8 @@ export const getQuestionDetails = async (params: Params) => {
       };
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/questions/${id}`,
-    // `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions/${id}`,
+    // `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/questions/${id}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions/${id}`,
     {
       method: "GET",
       headers: headers as HeadersInit,

@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
-import Spinner from "@/app/components/Spinner";
-import EditIcon from "@/app/ui/icons/EditIcon";
+// import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
+import Spinner from "@/components/Spinner";
+import EditIcon from "@/ui/icons/EditIcon";
 import { useSession } from "next-auth/react";
 import { getQuestionScript } from "@/app/api/getQuestionScript";
 import { editQuestionScript } from "@/app/api/editQuestionScript";
@@ -11,7 +11,7 @@ import { twMerge } from "tailwind-merge";
 import type { Session } from "@/types/Session";
 import type { Script } from "@/types/Script";
 export interface Props {
-  id: number;
+  id: string;
   className?: string;
 }
 
@@ -104,7 +104,7 @@ export default function ScriptSection({ id, className }: Props) {
               className="w-full h-40 p-2 rounded-md bg-[#FAFAFA] focus:ring-blue-500"
             />
             <div className="absolute bottom-4 left-4 flex items-center">
-              <XCircleIcon
+              {/* <XCircleIcon
                 onClick={() => {
                   setIsEditing(false);
                   setScript(prevScript);
@@ -114,7 +114,7 @@ export default function ScriptSection({ id, className }: Props) {
               <CheckCircleIcon
                 onClick={() => handleSaveScript()}
                 className="w-5 h-5 text-primary cursor-pointer hover:opacity-50"
-              ></CheckCircleIcon>
+              ></CheckCircleIcon> */}
             </div>
           </>
         ) : (

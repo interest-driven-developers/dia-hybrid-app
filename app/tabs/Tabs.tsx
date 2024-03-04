@@ -2,20 +2,34 @@
 
 import { Redirect, Route } from 'react-router-dom';
 import { IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
-import {  cog, flash, home, homeOutline, homeSharp, list, rocketOutline, timeOutline,bookOutline } from 'ionicons/icons';
+import {
+  cog,
+  flash,
+  home,
+  homeOutline,
+  homeSharp,
+  list,
+  rocketOutline,
+  timeOutline,
+  bookOutline,
+} from 'ionicons/icons';
 import Home from './Home';
 import Lists from './Lists';
-import ListDetail from '../../components/ListDetail';
 import Settings from './Settings';
 import SolveMain from './solve/SolveMain';
+import ProblemMain from './solve/problem/ProblemMain';
+import { usePathname } from 'next/navigation';
+
 // import HomeIcon from '@/ui/icons/HomeIcon';
 const Tabs = () => {
+  const pathname = usePathname();
+  const solvePath = pathname.includes('/solve');
   return (
     <IonTabs>
       <IonRouterOutlet>
         <Route path="/tabs/home" render={() => <Home />} exact={true} />
-        <Route path="/tabs/solve/:query" render={() => <SolveMain />} exact={true} />
-        {/* <Route path="/tabs/solve/:listId" render={() => <ListDetail />} exact={true} /> */}
+        <Route path="/tabs/solve/:query" render={() => <SolveMain />} />
+        <Route path="/tabs/solve/problem/:pk" render={() => <ProblemMain />} exact={true} />
         <Route path="/tabs/history" render={() => <Settings />} exact={true} />
         <Route path="/tabs" render={() => <Redirect to="/tabs/home" />} exact={true} />
       </IonRouterOutlet>
@@ -39,4 +53,3 @@ const Tabs = () => {
 };
 
 export default Tabs;
-

@@ -16,7 +16,7 @@ const SolveMain: React.FC = () => {
     <Layout>
       <IonContent fullscreen>
         <SolveHeader currentTag={currentTag} setCurrentTag={setCurrentTag} />
-        <SolveList query={currentTag} />
+        <SolveList query={query} />
       </IonContent>
     </Layout>
   );

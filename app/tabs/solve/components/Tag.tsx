@@ -47,13 +47,10 @@ const handleTagClick = () => {
 };
   return (
     <div
-      className={`flex items-center rounded-[5px] py-2 px-[25px] ${tagStyle}`}
+      className={`flex items-center rounded-[5px] h-[30px] py-[6px] px-[18px]  justify-center ${tagStyle}`}
       onClick={handleTagClick}
-      // lines="none"
-      // color="none"
-      // detail={false}
     >
-      <h1 className={`text-xs text-center font-semibold whitespace-nowrap ${tagNameStyle}`}>
+      <h1 className={`text-xs text-center font-semibold whitespace-nowrap mx-auto my-auto ${tagNameStyle}`}>
         {props.children}
       </h1>
     </div>
