@@ -23,6 +23,7 @@ interface Props {
 const ProblemSection: React.FC<Props> = ({ pk, handleClick, session }) => {
   const [question, setQuestion] = useState<QuestionType>();
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isSaved, setIsSaved] = useState<boolean>(false);
   useEffect(() => {
     async function fetchQuestion() {
       const question = await axios.get(`/api/question/getQuestion/?pkValue=${pk}`);
@@ -53,8 +54,14 @@ const ProblemSection: React.FC<Props> = ({ pk, handleClick, session }) => {
       ) : (
         <QuestionSkeleton></QuestionSkeleton>
       )}
-      <ScriptSection id={pk} className={`h-full ${isEditing ? 'mb-1' :'mb-3'}`}></ScriptSection>
-      {isEditing && <SubmitIcon className="h-[30px] w-[30px] mb-2" />}
+      <ScriptSection
+        id={pk}
+        className={`h-full ${isEditing ? 'mb-1' : 'mb-3'}`}
+        isSaved={isSaved}
+      ></ScriptSection>
+      {isEditing && (
+        <SubmitIcon onClick={() => setIsSaved(true)} className="h-[30px] w-[30px] mb-2" />
+      )}
       {!isEditing && <Button onClick={handleClick}>모의연습 시작하기</Button>}
     </div>
   );

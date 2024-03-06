@@ -21,21 +21,14 @@ import { menuController } from '@ionic/core';
 import ToggleMenu from './Header/Components/ToggleMenu';
 import { useSession } from 'next-auth/react';
 import type { Session } from '@/types/Session';
-
-type Props = {
-  children: React.ReactNode;
-  showHeader?: boolean;
-  className?: string;
-};
-
-const Layout = ({ children, showHeader = true, className }: Props) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const { data: session } = useSession();
   const typedSession = session as Session;
   return (
     <>
       <ToggleMenu />
-      <IonPage id="main-content" className={className}>
-        {showHeader && <Header session={typedSession} />}
+      <IonPage id="main-content">
+        <Header session={typedSession} />
         {children}
       </IonPage>
     </>

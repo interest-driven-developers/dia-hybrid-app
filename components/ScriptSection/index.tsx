@@ -17,11 +17,12 @@ import SubmitIcon from '@/ui/icons/SubmitIcon';
 export interface Props {
   id: string;
   className?: string;
+  isSaved?: boolean;
 }
 
 const maxCharacterCount = 3000;
 
-export default function ScriptSection({ id, className }: Props) {
+export default function ScriptSection({ id, className, isSaved }: Props) {
   const { data: session, status } = useSession();
   const typedSession = session as Session;
   const [script, setScript] = useState<Script | undefined>(undefined);
@@ -82,6 +83,12 @@ export default function ScriptSection({ id, className }: Props) {
       textAreaRef.current?.focus();
     }
   }, [isEditing]);
+
+  useEffect(() => {
+    if (isSaved) {
+      handleSaveScript();
+    }
+  }, [isSaved]);
   return (
     <>
       <div
@@ -152,7 +159,7 @@ export default function ScriptSection({ id, className }: Props) {
         )}
         {!isEditing && (
           <div
-            className="absolute bottom-[18px] left-6 mt-2 cursor-pointer hover:opacity-70"
+            className="absolute bottom-3 left-3 bg-white w-8 h-8 rounded-full px-[7px] py-[7px] mx-auto my-auto mt-2 cursor-pointer hover:opacity-70"
             onClick={() => {
               setIsEditing(true);
               setPrevScript(script);

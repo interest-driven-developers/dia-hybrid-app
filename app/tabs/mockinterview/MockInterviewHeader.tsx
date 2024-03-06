@@ -6,12 +6,12 @@ import CategoryButton from './components/CategoryButton';
 import Link from 'next/link';
 import { getTags } from '@/utils/getTags';
 import Tag from './components/Tag';
-interface SolveHeaderProps {
+interface Props {
     currentTag: string;
     setCurrentTag: (tag: string) => void;
 }
 
-const SolveHeader: React.FC<SolveHeaderProps> = ({ currentTag,setCurrentTag }) => {
+const MockInterviewHeader: React.FC<Props> = ({ currentTag, setCurrentTag }) => {
   const tags = getTags();
   return (
     <div className="sticky top-0 z-10 px-4 py-3 flex flex-col items-center bg-white">
@@ -34,4 +34,4 @@ const SolveHeader: React.FC<SolveHeaderProps> = ({ currentTag,setCurrentTag }) =
   );
 };
 
-export default SolveHeader;
+export default MockInterviewHeader;

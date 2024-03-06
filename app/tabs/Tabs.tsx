@@ -20,6 +20,7 @@ import SolveMain from './solve/SolveMain';
 import ProblemMain from './solve/problem/ProblemMain';
 import MockInterviewMain from './mockinterview/MockInterviewMain';
 import { usePathname } from 'next/navigation';
+import GuidanceSessionMain from './mockinterview/GuidanceSession/GuidanceSessionMain';
 
 // import HomeIcon from '@/ui/icons/HomeIcon';
 const Tabs = () => {
@@ -33,7 +34,7 @@ const Tabs = () => {
         <Route path="/tabs/solve/problem/:pkValue" render={() => <ProblemMain />} exact={true} />
         <Route
           path="/tabs/solve/mockinterview/:pkValue"
-          render={() => <MockInterviewMain />}
+          render={() => <GuidanceSessionMain />}
           exact={true}
         />
         <Route path="/tabs/history" render={() => <Settings />} exact={true} />
