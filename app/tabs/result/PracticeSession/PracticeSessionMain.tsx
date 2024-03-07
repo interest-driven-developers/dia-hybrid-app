@@ -15,7 +15,7 @@ const PracticeSessionMain: React.FC = () => {
   const history = useHistory();
   const params = useParams<{ pkValue: string }>();
   const { pkValue } = params;
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const typedSession = session as Session;
   const hideTabBar = useHideIonTabBar();
   const [question, setQuestion] = useState<QuestionType>();
@@ -35,7 +35,11 @@ const PracticeSessionMain: React.FC = () => {
           isSetting={true}
           className="bg-primary-100"
         />
-        <PracticeSessionSection pkValue={pkValue} question={question as QuestionType} session={typedSession} />
+        <PracticeSessionSection
+          pkValue={pkValue}
+          question={question as QuestionType}
+          session={typedSession as Session}
+        />
       </IonContent>
     </Layout>
   );

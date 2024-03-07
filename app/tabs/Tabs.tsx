@@ -23,6 +23,7 @@ import { usePathname } from 'next/navigation';
 import GuidanceSessionMain from './mockinterview/GuidanceSession/GuidanceSessionMain';
 import PracticeSessionMain from './mockinterview/PracticeSession/PracticeSessionMain';
 import SettingsMain from './settings/SettingsMain';
+import ResultMain from './result/ResultMain';
 
 // import HomeIcon from '@/ui/icons/HomeIcon';
 const Tabs = () => {
@@ -42,6 +43,11 @@ const Tabs = () => {
         <Route
           path="/tabs/mockinterview/single/:pkValue"
           render={() => <PracticeSessionMain />}
+          exact={true}
+        />
+        <Route
+          path="/tabs/result/:pkValue"
+          render={() => <ResultMain />}
           exact={true}
         />
         <Route path="/tabs/settings" render={() => <SettingsMain />} exact={true} />

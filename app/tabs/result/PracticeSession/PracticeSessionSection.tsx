@@ -26,6 +26,7 @@ interface Props {
 
 const PracticeSessionSection: React.FC<Props> = ({ pkValue, question, session }) => {
   const history = useHistory();
+  console.log('여긴 프랙티스 섹션', session);
   const [isStart, setIsStart] = useState(true);
   const [isEndModalOpen, setIsEndModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
@@ -45,41 +46,39 @@ const PracticeSessionSection: React.FC<Props> = ({ pkValue, question, session })
   //   fetchQuestion();
   // }, [pkValue]);
 
-  const handleStop = useCallback(
-    async (interimResult: string, time: number) => {
-      console.log(interimResult, time);
-      if (isCancel) {
-        setIsCancelModalOpen(true);
-        return;
-      }
-      setIsEndModalOpen(true);
-      // 결과물이 있을때만 저장
-      if (!interimResult) return;
-      if (session && session.user) {
-        const res = await axios.post('/api/practice/saveSinglePractice', {
-          pkValue: question.pkValue,
-          contentValue: interimResult,
-          typeValue: 'SINGLE',
-          createdTimeValue: new Date().toISOString(),
-          elapsedTimeValue: time,
-          filePathValue: null,
-        });
-      } else {
-        console.log('여기로 오지요?')
-        const practiceResult: HistoryType = {
-          pkValue: question.pkValue as number,
-          question: question,
-          contentValue: interimResult as string,
-          typeValue: 'SINGLE',
-          createdTimeValue: new Date().toISOString(),
-          elapsedTimeValue: time,
-          filePathValue: null,
-        };
-        setPracticeResult(practiceResult);
-      }
-    },
-    [question, isCancel,session]
-  );
+  const handleStop = async (interimResult: string, time: number) => {
+    console.log('세션 체크', session);
+    if (isCancel) {
+      setIsCancelModalOpen(true);
+      return;
+    }
+    setIsEndModalOpen(true);
+    // 결과물이 있을때만 저장
+    if (!interimResult) return;
+    // if (session && session.user) {
+    //   const res = await axios.post('/api/practice/saveSinglePractice', {
+    //     pkValue: question.pkValue,
+    //     contentValue: interimResult,
+    //     typeValue: 'SINGLE',
+    //     createdTimeValue: new Date().toISOString(),
+    //     elapsedTimeValue: time,
+    //     filePathValue: null,
+    //   });
+    // } else {
+    //   console.log('여기로와')
+    const practiceResult: HistoryType = {
+      pkValue: question.pkValue as number,
+      question: question,
+      contentValue: interimResult as string,
+      typeValue: 'SINGLE',
+      createdTimeValue: new Date().toISOString(),
+      elapsedTimeValue: time,
+      filePathValue: null,
+    };
+    setPracticeResult(practiceResult);
+    console.log('practiceResult', practiceResult);
+    // }
+  };
 
   const handleBack = () => {
     setIsCancel(true);
@@ -160,7 +159,17 @@ const PracticeSessionSection: React.FC<Props> = ({ pkValue, question, session })
           }}
           className="w-full"
         > */}
-        <Modal.Button className="rounded-md" onClick={() => history.push(`/tabs/result/${question.pkValue}`, practiceResult)}>다음</Modal.Button>
+        <Modal.Button
+          className="rounded-md"
+          onClick={() =>
+            history.push({
+              pathname: `/tabs/result/${question.pkValue}`,
+              state: practiceResult,
+            })
+          }
+        >
+          다음
+        </Modal.Button>
         {/* </Link> */}
       </Modal>
       {/* 저장 모달 섹션 */}
